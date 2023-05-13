@@ -1,10 +1,15 @@
-console.log('Oi para uma pessoa')
+const consultaCEP = fetch('https://viacep.com.br/ws/01001000/json/')
+    .then(resposta => resposta.json())
+    .then(r => {
+        if (r.erro) {
+            throw Error('CEP inválido!')
+        }
+        else {
+            console.log(r)
+        }
+    })
+    .catch(erro => console.log(erro))
 
-function mandaMensagen(){
-    console.log('Respondendo a pessoa')
-    console.log('Vou te mandar uma solocitação')
-    console.log('Solicitação recebida')
-}
 
-setTimeout(mandaMensagen,5000)
-console.log('fim da mensagem')
+console.log(consultaCEP)
+
